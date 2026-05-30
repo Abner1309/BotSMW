@@ -1,1 +1,1 @@
-# Bot With Reinforcement Learning - Super Mario World
+# Super Mario World - Reinforcement Learning
