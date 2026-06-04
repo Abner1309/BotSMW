@@ -7,4 +7,4 @@ This project aims to create a bot that will be trained through reinforcement lea
 * Stable Retro.
 * Stable Baselines3
 
-x
+xx
