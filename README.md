@@ -21,4 +21,4 @@ The levels in Super Mario World (Dinosaur Land) are divided into 7 main worlds a
 
 ## 🔨 Tools:
 * Stable Retro.
-* Stable Baselines3
+* Stable Baselines3.
