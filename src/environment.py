@@ -7,7 +7,7 @@ def make_custom_env():
         state="YoshiIsland1",
         use_restricted_actions=stable_retro.Actions.FILTERED,
         obs_type=stable_retro.Observations.RAM,
-        render_mode="None"
+        render_mode="rgb_array"
     )
     env = CustomRewardWrapper(env)
     return env
