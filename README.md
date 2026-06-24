@@ -26,6 +26,9 @@ The "actions" parameter of env.step() expects a binary array of 12 positions. In
 ## 🧠 Proximal Policy Optimization (PPO)
 The Proximal Policy Optimization (PPO) from stable-baselines3 (SB3) is one of the most popular and efficient implementations for Reinforcement Learning. It is an On-Policy algorithm, meaning it learns directly from the experiences it is collecting in real time, rather than reusing old memories.
 
+## ⚠️ Warnings:
+It is extremely important to update the "data.json" file located in the "stable_retro/data/stable/SuperMarioWorld-Snes" folder; otherwise, the custom reward function will not work, and training will fail.
+
 ## 🎲 Scenario:
 The levels in Super Mario World (Dinosaur Land) are divided into 7 main worlds and 2 secret areas, totaling 96 exits. The locations are:
 
