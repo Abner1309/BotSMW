@@ -1,5 +1,9 @@
 {
   "info": {
+    "mario_status": {
+    "address": 113,
+    "type": "|u1"
+    },
     "checkpoint": {
       "address": 5070,
       "type": "|i1"
