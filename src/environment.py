@@ -1,10 +1,8 @@
 import stable_retro
 from gymnasium.wrappers import TimeLimit
 from stable_baselines3.common.monitor import Monitor
-
 from src.reward import CustomRewardWrapper
 from src.skip_frame import SkipFrameWrapper
-
 
 def make_custom_env(rank: int = 0, seed: int = 0):
     env = stable_retro.make(
@@ -17,7 +15,7 @@ def make_custom_env(rank: int = 0, seed: int = 0):
 
     env = SkipFrameWrapper(env)
     env = CustomRewardWrapper(env)
-    env = TimeLimit(env, max_episode_steps=3600)
+    env = TimeLimit(env, max_episode_steps=3000)
     env = Monitor(env)
 
     if seed is not None:
