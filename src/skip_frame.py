@@ -14,4 +14,6 @@ class SkipFrameWrapper(gym.Wrapper):
 
         for i in range(self._skip):
             obs, reward, terminated, truncated, info = self.env.step(action)
+            if terminated or truncated:
+                break
         return obs, reward, terminated, truncated, info
