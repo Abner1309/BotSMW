@@ -1,46 +1,50 @@
 import stable_retro
 import stable_baselines3
-import time
+from stable_baselines3.common.atari_wrappers import WarpFrame
+from stable_baselines3.common.vec_env import DummyVecEnv, VecFrameStack, VecTransposeImage
 from src.reward import CustomRewardWrapper
+from src.skip_frame import SkipFrameWrapper
+from gymnasium.wrappers import TimeLimit
 
-def watch_agent(brain_path):
-    # Create the environment.
+
+def make_watch_env():
     env = stable_retro.make(
         game="SuperMarioWorld-Snes-v0",
         state="YoshiIsland1",
         use_restricted_actions=stable_retro.Actions.FILTERED,
-        obs_type=stable_retro.Observations.RAM,
+        obs_type=stable_retro.Observations.IMAGE,
         render_mode="human"
     )
-
-    # Apply the personalized reward function.
+    env = SkipFrameWrapper(env)
     env = CustomRewardWrapper(env)
+    env = WarpFrame(env)
+    env = TimeLimit(env, max_episode_steps=1800)
+    return env
+
+def watch_agent(brain_path):
+    env = DummyVecEnv([make_watch_env])
+    env = VecFrameStack(env, n_stack=4)
+    env = VecTransposeImage(env)
 
     # Load the intelligence.
     model = stable_baselines3.PPO.load(brain_path, env=env)
 
     # Gameplay Loop.
-    obs, info = env.reset()
-    done = False
-    total_reward = 0
-
+    obs = env.reset()
+    total_reward = 0.0
     print("Starting the game.")
     try:
-        while not done:
-            # Prediction of the agent's action.
+        while True:
             action, _states = model.predict(obs, deterministic=True)
-
-            # Advance one frame.
-            obs, reward, terminated, truncated, info = env.step(action)
-            done = terminated or truncated
-            total_reward += reward
-
-            # Frame adjustment.
-            time.sleep(1.0 / 60.0)
+            obs, reward, dones, infos = env.step(action)
+            total_reward += reward[0]
+            if dones[0]:
+                break
         print(f"End of episode. Total Reward: {total_reward}")
     except KeyboardInterrupt:
         print("Closing the environment.")
     finally:
         env.close()
 
-
+if __name__ == "__main__":
+    watch_agent("../trained_models/winner.zip")
