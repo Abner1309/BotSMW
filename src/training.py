@@ -40,7 +40,7 @@ def train_sequential(load_path=None, vec_path=None):
 
     print("Starting sequential training...")
     model.learn(
-        total_timesteps=10_000_000,
+        total_timesteps=1_000_000,
         callback=callback_chain,
         progress_bar=True,
     )
@@ -88,7 +88,7 @@ def train_parallel(cpus, load_path=None, vec_path=None):
 
     print(f"Starting parallel training using {cpus} CPUs...")
     model.learn(
-        total_timesteps=10_000_000,
+        total_timesteps=1_000_000,
         callback=callback_chain,
         progress_bar=True,
     )
@@ -97,4 +97,6 @@ def train_parallel(cpus, load_path=None, vec_path=None):
     model.save("../trained_models/bot_parallel")
 
 if __name__ == "__main__":
-    train_sequential()
+    load = "../checkpoints/t8/ppo_smw_sequential_1000000_steps.zip"
+    vec = "../checkpoints/t8/ppo_smw_sequential_vecnormalize_1000000_steps.pkl"
+    train_sequential(load_path=load, vec_path=vec)
