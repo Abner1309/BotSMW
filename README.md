@@ -33,6 +33,10 @@ The reward function works as follows:
 3. If Mario dies, he receives a penalty.
 4. If Mario completes the level, he will receive the highest possible score.
 
+# 🏆 Training:
+It took 7,200,000 timesteps for the agent to complete the game's first scenario.
+The agent's performance can be observed using the "watch.py" module in conjunction with the file located at "/trained_models/winner.zip".
+
 ## ⚠️ Warnings:
 It is extremely important to update the "data.json" file located in the "stable_retro/data/stable/SuperMarioWorld-Snes" folder; otherwise, the custom reward function will not work, and training will fail.
 
