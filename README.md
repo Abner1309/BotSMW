@@ -37,9 +37,8 @@ The reward function works as follows:
 It took 7,200,000 timesteps for the agent to complete the game's first scenario.
 The agent's performance can be observed using the "watch.py" module in conjunction with the file located at "/trained_models/winner.zip".
 
-<video src="/video/winner.mkv" controls width="100%">
-  Your browser does not support video playback.
-</video>
+# 🎬 Video:
+A video showing the agent completing the scenario can be found in the "video" folder.
 
 ## ⚠️ Warnings:
 It is extremely important to update the "data.json" file located in the "stable_retro/data/stable/SuperMarioWorld-Snes" folder; otherwise, the custom reward function will not work, and training will fail.
